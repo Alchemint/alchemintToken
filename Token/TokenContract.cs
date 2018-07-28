@@ -26,12 +26,12 @@ namespace TokenContract
 
         public static string name()
         {
-            return "Special Drawing Token";
+            return "Standards";
         }
 
         public static string symbol()
         {
-            return "SDT";
+            return "SDS";
         }
         //因子 
         //factor
