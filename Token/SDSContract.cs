@@ -6,9 +6,9 @@ using System.ComponentModel;
 using System.Numerics;
 using Neo.SmartContract.Framework.Services.System;
 
-namespace TokenContract
+namespace Alchemint
 {
-    public class TokenContract : SmartContract
+    public class SDSContract : SmartContract
     {
 
         [DisplayName("transfer")]
