@@ -65,7 +65,7 @@ namespace Alchemint
         /// </returns>
         public static Object Main(string operation, params object[] args)
         {
-            var magicstr = "2018-07-31";
+            var magicstr = "2018-07-31 18:30:21";
 
             if (Runtime.Trigger == TriggerType.Verification)
             {
