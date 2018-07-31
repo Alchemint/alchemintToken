@@ -65,7 +65,7 @@ namespace TokenContract
         /// </returns>
         public static Object Main(string operation, params object[] args)
         {
-            var magicstr = "2018-07-27";
+            var magicstr = "2018-07-31";
 
             if (Runtime.Trigger == TriggerType.Verification)
             {
@@ -98,13 +98,10 @@ namespace TokenContract
                     if (args.Length != 3) return false;
                     byte[] from = (byte[])args[0];
                     byte[] to = (byte[])args[1];
-                    if (from.Length != 20 || to.Length != 20)
-                        return false;
                     BigInteger value = (BigInteger)args[2];
 
                     if (!Runtime.CheckWitness(from))
                         return false;
-
                     return transfer(from, to, value);
                 }
                 //允许合约调用
@@ -115,12 +112,11 @@ namespace TokenContract
                     byte[] from = (byte[])args[0];
                     byte[] to = (byte[])args[1];
                     BigInteger value = (BigInteger)args[2];
-                    if (from.Length != 20 || to.Length != 20)
-                        return false;
 
                     //判断调用者是否是合约调用
                     //check invoke is jump contract
-                    if (callscript.AsBigInteger() != from.AsBigInteger()) return false;
+                    if (callscript.AsBigInteger() != from.AsBigInteger())
+                        return false;
                     return transfer(from, to, value);
                 }
                 if (operation == "getTXInfo")
@@ -166,6 +162,9 @@ namespace TokenContract
         /// </returns>
         public static bool transfer(byte[] from, byte[] to, BigInteger value)
         {
+            if (from.Length != 20 || to.Length != 20)
+                return false;
+
             if (value <= 0) return false;
 
             if (from == to) return true;
